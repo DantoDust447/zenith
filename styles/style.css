@@ -1,3 +1,10 @@
 body{
     background-color: #686868;
+    color: white;
+}
+header{
+    color: #fff;
+    background-color: #333333;
+    padding: 10px;
+    text-align: center;
 }

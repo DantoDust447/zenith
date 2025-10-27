@@ -39,21 +39,27 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Tu Streaming Simple | Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <h1>Bienvenido a Zenith!!</h1>
+    <header>
+        <nav>
+            <h1>Bienvenido a Zenith!!</h1>
 
-    <form action="index.php" method="GET" style="margin-bottom: 20px;">
-        <input type="text" name="q" placeholder="Buscar videos por título o descripción..."
-            value="<?php echo htmlspecialchars($termino_busqueda); ?>" size="50">
-        <button type="submit">Buscar</button>
-        <?php if ($termino_busqueda): ?>
-        <a href="index.php">Limpiar Búsqueda</a>
-        <?php endif; ?>
-    </form>
+            <form action="index.php" method="GET" style="margin-bottom: 20px;">
+                <input type="text" name="q" placeholder="Buscar videos por título o descripción..."
+                    value="<?php echo htmlspecialchars($termino_busqueda); ?>" size="50">
+                <button type="submit">Buscar</button>
+                <?php if ($termino_busqueda): ?>
+                <a href="index.php">Limpiar Búsqueda</a>
+                <?php endif; ?>
+            </form>
+        </nav>
+    </header>
+
 
     <p>
         <?php if (isset($_SESSION['logueado'])): ?>
@@ -81,8 +87,8 @@ try {
 
             <a href="forms/ver_video.php?id=<?php echo $video['id_video']; ?>">
                 <?php echo htmlspecialchars($video['titulo']); ?>
-                </a>
-                <p><?php echo htmlspecialchars(substr($video['descripcion'], 0, 100)) . '...'; ?></p>
+            </a>
+            <p><?php echo htmlspecialchars(substr($video['descripcion'], 0, 100)) . '...'; ?></p>
         </div>
 
         <?php endforeach; ?>
