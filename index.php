@@ -38,7 +38,7 @@ try {
 
 <head>
     <meta charset="UTF-8">
-    <title>Tu Streaming Simple | Inicio</title>
+    <title>Zenith</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -46,17 +46,7 @@ try {
     <header>
         <nav>
             <div class="principal-link">Zenith</div>
-
-            <form action="index.php" method="GET" class="search-bar">
-                <input type="text" name="q" value="<?php echo htmlspecialchars($termino_busqueda); ?>"
-                    class="search-bar-input">
-                <button type="submit" class="search-bar-button">Buscar</button>
-                <?php if ($termino_busqueda): ?>
-                <a href="index.php">Limpiar Búsqueda</a>
-                <?php endif; ?>
-            </form>
-        </nav>
-        <div>
+            <div class="links-container">
             <?php if (isset($_SESSION['logueado'])): ?>
             <a class="header-links" href="forms/subir_video.php">Subir Video</a> |
             <a class="header-links" href="procesos/logout.php">Cerrar Sesión</a> |
@@ -66,9 +56,16 @@ try {
             <a class="header-links" href="forms/registro.php">Registrarse</a>
             <?php endif; ?>
             </div>
+            <form action="index.php" method="GET" class="search-bar">
+                <input type="text" name="q" value="<?php echo htmlspecialchars($termino_busqueda); ?>"
+                    class="search-bar-input">
+                <button type="submit" class="search-bar-button">Buscar</button>
+                <?php if ($termino_busqueda): ?>
+                <a href="index.php" class="cleaner">Limpiar Búsqueda</a>
+                <?php endif; ?>
+            </form>
+        </nav>
     </header>
-
-    <hr>
     <div class="card-container">
 
         <?php if (count($videos) > 0): ?>

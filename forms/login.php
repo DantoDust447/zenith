@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/style.css">
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
 </head>
 <body>
-    <h1><a href="../index.php">Inicio</a></h1>
-    <h2>Iniciar Sesión</h2>
-
-    <form action="../procesos/verificar_login.php" method="POST">
-        <div>
-            <label for="nombre_usuario">Nombre de Usuario o Email:</label>
-            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
-        </div>
-        <br>
-        <div>
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-        </div>
-        <br>
-        <button type="submit">Entrar</button>
+        <header>
+        <nav>
+            <a href="../index.php" class="principal-link">Zenith</a>
+        </nav>
+    </header>
+    <main>
+        <form action="../procesos/verificar_login.php" method="POST" class="login">
+            <input class="input-login" type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Usuario o correo" required>
+        <br><br>
+            <input class="input-login" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+        <br><br>
+        <button type="submit" class="login-button">Entrar</button>
     </form>
-
+    </main>
 </body>
 </html>

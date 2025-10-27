@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['video_file'])) {
 
             // Redirigir o mostrar éxito
             echo "¡Video subido y registrado con éxito! <br> Ruta: " . htmlspecialchars($ruta_completa_archivo);
-            // header("Location: index.php"); 
+            header("Location: ../index.php"); 
             // exit();
 
         } catch (PDOException $e) {
