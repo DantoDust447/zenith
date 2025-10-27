@@ -39,20 +39,18 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Tu Streaming Simple | Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <h1>Bienvenido a Zenith!!</h1>
+            <div class="principal-link">Zenith</div>
 
-            <form action="index.php" method="GET" style="margin-bottom: 20px;">
+            <form action="index.php" method="GET" class="search-bar">
                 <input type="text" name="q" placeholder="Buscar videos por título o descripción..."
-                    value="<?php echo htmlspecialchars($termino_busqueda); ?>" size="50">
-                <button type="submit">Buscar</button>
+                    value="<?php echo htmlspecialchars($termino_busqueda); ?>" class="search-bar-input">
+                <button type="submit" class="search-bar-button">Buscar</button>
                 <?php if ($termino_busqueda): ?>
                 <a href="index.php">Limpiar Búsqueda</a>
                 <?php endif; ?>
