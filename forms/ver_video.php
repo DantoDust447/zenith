@@ -56,75 +56,79 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <link rel="stylesheet" href="../styles/style.css">
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($video['titulo']); ?> | Ver Video</title>
 </head>
+
 <body>
+    <header>
+        <nav><a class="header-links" href="../index.php">← Volver a la página principal</a></nav>
+    </header>
+    <main>
+        <h1 class="main-title"><?php echo htmlspecialchars($video['titulo']); ?></h1>
 
-    <p><a href="../index.php">← Volver a la página principal</a></p>
-    
-    <hr>
-    
-    <h1><?php echo htmlspecialchars($video['titulo']); ?></h1>
+        <div class="video-container" style="width: 800px; margin-bottom: 20px;">
 
-    <div class="video-container" style="width: 800px; margin-bottom: 20px;">
-        
-        <video controls style="width: 100%; height: auto;">
-            <source src="<?php echo htmlspecialchars('../procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
-        </video>
-        
-    </div>
-    
-    <div class="video-info">
-        <p><strong>Subido por:</strong> <?php echo htmlspecialchars($video['nombre_usuario']); ?></p>
-        <p><strong>Fecha:</strong> <?php echo date("d/m/Y", strtotime($video['fecha_subida'])); ?></p>
-        
-        <h2>Descripción</h2>
-        <p><?php echo nl2br(htmlspecialchars($video['descripcion'])); ?></p>
-    </div>
+            <video autoplay controls style="width: 100%; height: auto;">
+                <source src="<?php echo htmlspecialchars('../procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
 
-    <hr>
-    <hr>
-    <h3>Comentarios (<?php echo count($comentarios); ?>)</h3>
+        </div>
 
-    <?php if (isset($_SESSION['logueado'])): ?>
+        <div class="video-info">
+            <p><strong>Subido por:</strong> <?php echo htmlspecialchars($video['nombre_usuario']); ?></p>
+            <p><strong>Fecha:</strong> <?php echo date("d/m/Y", strtotime($video['fecha_subida'])); ?></p>
+
+            <h2>Descripción</h2>
+            <p><?php echo nl2br(htmlspecialchars($video['descripcion'])); ?></p>
+        </div>
+
+        <hr>
+        <hr>
+        <h3>Comentarios (<?php echo count($comentarios); ?>)</h3>
+
+        <?php if (isset($_SESSION['logueado'])): ?>
         <div style="margin-bottom: 20px;">
             <h4>Deja tu comentario:</h4>
-            
+
             <form action="../procesos/procesar_comentario.php" method="POST">
-                
+
                 <input type="hidden" name="id_video" value="<?php echo $id_video; ?>">
-                
-                <textarea name="comentario" rows="3" cols="60" required 
-                          placeholder="Escribe tu comentario aquí..."></textarea>
+
+                <textarea name="comentario" rows="3" cols="60" required
+                    placeholder="Escribe tu comentario aquí..."></textarea>
                 <br>
                 <button type="submit">Publicar Comentario</button>
             </form>
         </div>
-    <?php else: ?>
-        <p>Debes <a href="users/login.php">iniciar sesión</a> para dejar un comentario.</p>
-    <?php endif; ?>
-
-    <div class="lista-comentarios">
-        <?php if (count($comentarios) > 0): ?>
-            <?php foreach ($comentarios as $comentario): ?>
-                <div style="border: 1px solid #eee; padding: 10px; margin-bottom: 10px;">
-                    <p>
-                        <strong><?php echo htmlspecialchars($comentario['nombre_usuario']); ?></strong> 
-                        <small>el <?php echo date("d/m/Y H:i", strtotime($comentario['fecha_comentario'])); ?></small>
-                    </p>
-                    <p><?php echo nl2br(htmlspecialchars($comentario['texto'])); ?></p>
-                </div>
-            <?php endforeach; ?>
         <?php else: ?>
-            <p>Sé el primero en comentar este video.</p>
+        <p>Debes <a href="users/login.php">iniciar sesión</a> para dejar un comentario.</p>
         <?php endif; ?>
-    </div>
 
+        <div class="lista-comentarios">
+            <?php if (count($comentarios) > 0): ?>
+            <?php foreach ($comentarios as $comentario): ?>
+            <div class="comentario">
+                <p>
+                    <strong><?php echo htmlspecialchars($comentario['nombre_usuario']); ?></strong>
+                    <small>el <?php echo date("d/m/Y H:i", strtotime($comentario['fecha_comentario'])); ?></small>
+                </p>
+                <p><?php echo nl2br(htmlspecialchars($comentario['texto'])); ?></p>
+            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+            <p>Sé el primero en comentar este video.</p>
+            <?php endif; ?>
+        </div>
+    </main>
 </body>
+
 </html>
 
 </body>
+
 </html>

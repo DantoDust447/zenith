@@ -48,46 +48,43 @@ try {
             <div class="principal-link">Zenith</div>
 
             <form action="index.php" method="GET" class="search-bar">
-                <input type="text" name="q" placeholder="Buscar videos por título o descripción..."
-                    value="<?php echo htmlspecialchars($termino_busqueda); ?>" class="search-bar-input">
+                <input type="text" name="q" value="<?php echo htmlspecialchars($termino_busqueda); ?>"
+                    class="search-bar-input">
                 <button type="submit" class="search-bar-button">Buscar</button>
                 <?php if ($termino_busqueda): ?>
                 <a href="index.php">Limpiar Búsqueda</a>
                 <?php endif; ?>
             </form>
         </nav>
+        <div>
+            <?php if (isset($_SESSION['logueado'])): ?>
+            <a class="header-links" href="forms/subir_video.php">Subir Video</a> |
+            <a class="header-links" href="procesos/logout.php">Cerrar Sesión</a> |
+            <a class="header-links" href="forms/dashboard.php">Dashboard</a>
+            <?php else: ?>
+            <a class="header-links" href="forms/login.php">Iniciar Sesión</a> |
+            <a class="header-links" href="forms/registro.php">Registrarse</a>
+            <?php endif; ?>
+            </div>
     </header>
 
-
-    <p>
-        <?php if (isset($_SESSION['logueado'])): ?>
-        <a href="forms/subir_video.php">Subir Video</a> |
-        <a href="procesos/logout.php">Cerrar Sesión</a> |
-        <a href="forms/dashboard.php">Dashboard</a>
-        <?php else: ?>
-        <a href="forms/login.php">Iniciar Sesión</a> |
-        <a href="forms/registro.php">Registrarse</a>
-        <?php endif; ?>
-    </p>
-
     <hr>
-    <div class="">
+    <div class="card-container">
 
         <?php if (count($videos) > 0): ?>
 
         <?php foreach ($videos as $video): ?>
 
-        <div class="">
-            <video class="">
+        <a href="forms/ver_video.php?id=<?php echo $video['id_video']; ?>" class="card-video">
+            <video class="video-preview" autoplay muted loop>
                 <source src="<?php echo htmlspecialchars('procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
                 Tu navegador no soporta el elemento de video.
             </video>
 
-            <a href="forms/ver_video.php?id=<?php echo $video['id_video']; ?>">
+        <div class="video-title">
                 <?php echo htmlspecialchars($video['titulo']); ?>
-            </a>
-            <p><?php echo htmlspecialchars(substr($video['descripcion'], 0, 100)) . '...'; ?></p>
         </div>
+        </a>
 
         <?php endforeach; ?>
 
