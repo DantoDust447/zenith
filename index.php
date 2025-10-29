@@ -1,7 +1,11 @@
 <?php
 session_start();
+if (!isset($_SESSION['logueado']) || $_SESSION['logueado'] !== true) {
+    header("Location: forms/login.php");
+    exit();
+}
 require 'config/conexion.php'; // Incluye la conexión PDO
-
+$id_usuario_actual = $_SESSION['id_usuario'];
 // 1. Recoger el término de búsqueda, si existe
 $termino_busqueda = '';
 if (isset($_GET['q']) && !empty($_GET['q'])) {
@@ -46,16 +50,6 @@ try {
     <header>
         <nav>
             <div class="principal-link">Zenith</div>
-            <div class="links-container">
-            <?php if (isset($_SESSION['logueado'])): ?>
-            <a class="header-links" href="forms/subir_video.php">Subir Video</a> |
-            <a class="header-links" href="procesos/logout.php">Cerrar Sesión</a> |
-            <a class="header-links" href="forms/dashboard.php">Dashboard</a>
-            <?php else: ?>
-            <a class="header-links" href="forms/login.php">Iniciar Sesión</a> |
-            <a class="header-links" href="forms/registro.php">Registrarse</a>
-            <?php endif; ?>
-            </div>
             <form action="index.php" method="GET" class="search-bar">
                 <input type="text" name="q" value="<?php echo htmlspecialchars($termino_busqueda); ?>"
                     class="search-bar-input">
@@ -64,6 +58,17 @@ try {
                 <a href="index.php" class="cleaner">Limpiar Búsqueda</a>
                 <?php endif; ?>
             </form>
+            <div class="links-container">
+                <?php if (isset($_SESSION['logueado'])): ?>
+                <a class="header-links" href="forms/subir_video.php">Subir Video</a>
+                <a class="header-links" href="procesos/logout.php">Cerrar Sesión</a>
+                <a class="header-links" href="forms/dashboard.php">Dashboard</a>
+                <a class="header-links"><?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?></a>
+                <?php else: ?>
+                <a class="header-links" href="forms/login.php">Iniciar Sesión</a> |
+                <a class="header-links" href="forms/registro.php">Registrarse</a>
+                <?php endif; ?>
+            </div>
         </nav>
     </header>
     <div class="card-container">
@@ -78,9 +83,9 @@ try {
                 Tu navegador no soporta el elemento de video.
             </video>
 
-        <div class="video-title">
+            <div class="video-title">
                 <?php echo htmlspecialchars($video['titulo']); ?>
-        </div>
+            </div>
         </a>
 
         <?php endforeach; ?>

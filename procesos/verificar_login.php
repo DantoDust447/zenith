@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['logueado'] = true;
 
                 // 8. Redirigir al usuario a la página principal de videos
-                header("Location: ../forms/dashboard.php"); // Crearás 'dashboard.php' más adelante
+                header("Location: ../index.php"); // Crearás 'dashboard.php' más adelante
                 exit();
 
             } else {
