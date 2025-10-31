@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             // Usuario no encontrado
-            echo "Error: Usuario o email no encontrado.";
+            echo "Error: Usuario no encontrado.";
         }
 
     } catch (PDOException $e) {

@@ -82,10 +82,15 @@ try {
                 <source src="<?php echo htmlspecialchars('procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
                 Tu navegador no soporta el elemento de video.
             </video>
-
-            <div class="video-title">
-                <?php echo htmlspecialchars($video['titulo']); ?>
+            <div class="descripcion">
+                <div class="video-title">
+                    <?php echo htmlspecialchars($video['titulo']); ?>
+                </div>
+                <div class="detalles-video">
+                    <?php echo htmlspecialchars($video['descripcion']); ?>
+                </div>
             </div>
+
         </a>
 
         <?php endforeach; ?>

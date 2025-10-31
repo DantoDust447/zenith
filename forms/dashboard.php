@@ -38,10 +38,12 @@ try {
     <link rel="stylesheet" href="../styles/style.css">
     <style>
         .video-list {
+            text-decoration: none;
             list-style: none;
             padding: 0;
         }
         .video-item-dash {
+            text-decoration: none;
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 10px;
@@ -49,9 +51,11 @@ try {
             align-items: center;
         }
         .video-details {
+            text-decoration: none;
             margin-left: 20px;
         }
         .video-details p {
+            text-decoration: none;
             margin: 0;
             font-size: 0.9em;
             color: #555;

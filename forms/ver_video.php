@@ -60,7 +60,7 @@ try {
 <head>
     <link rel="stylesheet" href="../styles/style.css">
     <meta charset="UTF-8">
-    <title><?php echo htmlspecialchars($video['titulo']); ?> | Ver Video</title>
+    <title><?php echo htmlspecialchars($video['titulo']); ?></title>
 </head>
 
 <body>
@@ -68,45 +68,37 @@ try {
         <nav><a class="header-links" href="../index.php">← Volver a la página principal</a></nav>
     </header>
     <main>
-        <h1 class="main-title"><?php echo htmlspecialchars($video['titulo']); ?></h1>
-
-        <div class="video-container" style="width: 800px; margin-bottom: 20px;">
-
-            <video autoplay controls style="width: 100%; height: auto;">
+            <video autoplay controls class="video-player">
                 <source src="<?php echo htmlspecialchars('../procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
                 Tu navegador no soporta el elemento de video.
             </video>
-
-        </div>
-
+        
         <div class="video-info">
+            <h1><?php echo htmlspecialchars($video['titulo']); ?></h1>
             <p><strong>Subido por:</strong> <?php echo htmlspecialchars($video['nombre_usuario']); ?></p>
             <p><strong>Fecha:</strong> <?php echo date("d/m/Y", strtotime($video['fecha_subida'])); ?></p>
 
             <h2>Descripción</h2>
             <p><?php echo nl2br(htmlspecialchars($video['descripcion'])); ?></p>
         </div>
-
-        <hr>
-        <hr>
         <h3>Comentarios (<?php echo count($comentarios); ?>)</h3>
 
         <?php if (isset($_SESSION['logueado'])): ?>
         <div style="margin-bottom: 20px;">
             <h4>Deja tu comentario:</h4>
 
-            <form action="../procesos/procesar_comentario.php" method="POST">
+            <form action="../procesos/procesar_comentario.php" method="POST" class="form-comentario">
 
                 <input type="hidden" name="id_video" value="<?php echo $id_video; ?>">
 
                 <textarea name="comentario" rows="3" cols="60" required
-                    placeholder="Escribe tu comentario aquí..."></textarea>
+                    placeholder="Escribe tu comentario aquí..." class="input-comentario"></textarea>
                 <br>
-                <button type="submit">Publicar Comentario</button>
+                <button type="submit" class="button-comentario">Publicar Comentario</button>
             </form>
         </div>
         <?php else: ?>
-        <p>Debes <a href="users/login.php">iniciar sesión</a> para dejar un comentario.</p>
+        <p>Debes <a href="login.php">iniciar sesión</a> para dejar un comentario.</p>
         <?php endif; ?>
 
         <div class="lista-comentarios">
