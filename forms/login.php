@@ -12,6 +12,7 @@
         </nav>
     </header>
     <main>
+    <h2>Iniciar Sesión</h2>
         <form action="../procesos/verificar_login.php" method="POST" class="login">
             <input class="input-login" type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Usuario o correo" required>
         <br><br>

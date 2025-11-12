@@ -31,87 +31,87 @@ try {
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <title>Panel de Usuario</title>
     <link rel="stylesheet" href="../styles/style.css">
-    <style>
-        .video-list {
-            text-decoration: none;
-            list-style: none;
-            padding: 0;
-        }
-        .video-item-dash {
-            text-decoration: none;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .video-details {
-            text-decoration: none;
-            margin-left: 20px;
-        }
-        .video-details p {
-            text-decoration: none;
-            margin: 0;
-            font-size: 0.9em;
-            color: #555;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
+
 <body>
-    <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?>!</h1>
-    
-    <p>
-        <a href="subir_video.php">Subir Nuevo Video</a>
-    </p>
-    <p><a href="../index.php">Ir al Inicio</a></p>
-    <p><a href="../procesos/logout.php">Cerrar Sesión</a></p>
+    <header>
 
+        <nav>
+            <h1 class="principal-link">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?>!</h1>
+            <div class="links-container">
+                <a class="header-links" href="../index.php">← Volver a la página principal</a>
+                <a class="header-links" href="../index.php">Ir al Inicio</a>
+            </div>
+
+        </nav>
+    </header>
     <hr>
-    
-    <h2>Mis Videos Subidos</h2>
-    
-    <?php if (isset($error_db)): ?>
-        <p style="color: red;"><?php echo $error_db; ?></p>
-    <?php endif; ?>
+    <main style="display: flex;">
+        <div class="main-body" style="width: 75%; display: block;">
+            <h2>Mis videos</h2>
+            <?php if (isset($error_db)): ?>
+            <p style="color: red;"><?php echo $error_db; ?></p>
+            <?php endif; ?>
 
-    <?php if (count($mis_videos) > 0): ?>
-        
-        <div class="video-list">
-            
-            <?php foreach ($mis_videos as $video): ?>
-                
-                <div class="video-item-dash">
-                    
-                    <video controls style="width: 150px; height: 100px;">
-                        <source src="<?php echo htmlspecialchars('../procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
-                        Video
-                    </video>
+            <?php if (count($mis_videos) > 0): ?>
 
-                    <div class="video-details">
-                        <h3>
-                            <a href="../ver_video.php?id=<?php echo $video['id_video']; ?>">
-                                <?php echo htmlspecialchars($video['titulo']); ?>
-                            </a>
-                        </h3>
-                        <p>Subido el: <?php echo date("d/m/Y", strtotime($video['fecha_subida'])); ?></p>
-                        <p><a href="ver_video.php?id=<?php echo $video['id_video']; ?>">Ver comentarios</a></p>
-                    </div>
 
+            <div class="dashboard-video-list">
+
+                <?php foreach ($mis_videos as $video): ?>
+
+                <div class="video-dashboard-item" href="">
+                    <a href="ver_video.php?id=<?php echo $video['id_video']; ?>">
+                        <video autoplay muted class="dashboard-video-preview">
+                            <source src="<?php echo htmlspecialchars('../procesos/'.$video['ruta_archivo']); ?>"
+                                type="video/mp4">
+                            Video
+                        </video>
+                    </a>
+
+                    <div class="video-title"><?php echo htmlspecialchars($video['titulo']); ?></div>
+                    <p class="detalles-video">Subido el: <?php echo date("d/m/Y", strtotime($video['fecha_subida'])); ?>
+                    </p>
+                    <a href="../procesos/eliminar_video.php?id=<?php echo $video['id_video']; ?>"
+                        class="header-links"><i class="bi bi-trash3-fill"></i> Borrar el video</a>
                 </div>
 
-            <?php endforeach; ?>
-            
+                <?php endforeach; ?>
+
+            </div>
+
+            <?php else: ?>
+            <p>Aún no has subido ningún video.</p>
+            <p><a href="../forms/subir_video.php">¡Sube tu primer video ahora!</a></p>
+            <?php endif; ?>
         </div>
-        
-    <?php else: ?>
-        <p>Aún no has subido ningún video.</p>
-        <p><a href="../forms/subir_video.php">¡Sube tu primer video ahora!</a></p>
-    <?php endif; ?>
+        <aside style="width:25%; border-left:1px solid #00a703; align-text:center; padding-left:10px;">
+            <a href="../forms/subir_video.php" class="header-links">
+                <i class="bi bi-plus-circle-fill"> Nuevo video</i>
+            </a>
+            <br><br>
+            <a href="../procesos/logout.php" class="header-links">
+                <i class="bi bi-person-bounding-box"> Cerrar Sesión</i>
+            </a>
+            <br><br>
+            <p class="info-alerts">
+                ALERTA: <br>
+                Para eliminar un video, tendrás que hacer dos clicks. <br>
+                esto se debe a medidas de seguridad para evitar eliminaciones accidentales.
+            </p>
+        </aside>
+    </main>
+
 
 </body>
+
 </html>
