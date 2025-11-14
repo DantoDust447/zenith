@@ -8,7 +8,7 @@
 <body>
         <header>
         <nav>
-            <a href="../index.php" class="principal-link">Zenith</a>
+            <a href="../index.php" class="principal-link">Ruzzer</a>
         </nav>
     </header>
     <main>

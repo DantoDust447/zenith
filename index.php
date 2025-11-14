@@ -45,7 +45,8 @@ try {
     <title>Zenith</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
@@ -73,36 +74,53 @@ try {
             </div>
         </nav>
     </header>
-    <div class="card-container">
+    <main style="display: flex;">
+        <div class="card-container" style="width: 75%; display: block;">
 
-        <?php if (count($videos) > 0): ?>
+            <?php if (count($videos) > 0): ?>
 
-        <?php foreach ($videos as $video): ?>
+            <?php foreach ($videos as $video): ?>
 
-        <a href="forms/ver_video.php?id=<?php echo $video['id_video']; ?>" class="card-video">
-            <video class="video-preview" autoplay muted loop>
-                <source src="<?php echo htmlspecialchars('procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="descripcion">
-                <div class="video-title">
-                    <?php echo htmlspecialchars($video['titulo']); ?>
+            <a href="forms/ver_video.php?id=<?php echo $video['id_video']; ?>" class="card-video">
+                <video class="video-preview" autoplay muted loop>
+                    <source src="<?php echo htmlspecialchars('procesos/'.$video['ruta_archivo']); ?>" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="descripcion">
+                    <div class="video-title">
+                        <?php echo htmlspecialchars($video['titulo']); ?>
+                    </div>
+                    <div class="detalles-video">
+                        <?php echo htmlspecialchars($video['descripcion']); ?>
+                    </div>
                 </div>
-                <div class="detalles-video">
-                    <?php echo htmlspecialchars($video['descripcion']); ?>
-                </div>
-            </div>
 
-        </a>
+            </a>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
-        <?php else: ?>
-        <p>No se encontraron videos
-            <?php echo $termino_busqueda ? "para el término '$termino_busqueda'" : "disponibles."; ?></p>
-        <?php endif; ?>
+            <?php else: ?>
+            <p>No se encontraron videos
+                <?php echo $termino_busqueda ? "para el término '$termino_busqueda'" : "disponibles."; ?></p>
+            <?php endif; ?>
 
-    </div>
+        </div>
+        <aside style="width:25%; border-left:1px solid #00a703; align-text:center; padding-left:10px;">
+            <br>
+            <a href="../forms/subir_video.php" class="header-links">
+                <i class="bi bi-plus-circle-fill"> Nuevo video</i>
+            </a>
+            <br><br>
+            <a href="../procesos/logout.php" class="header-links">
+                <i class="bi bi-person-bounding-box"> Cerrar Sesión</i>
+            </a>
+            <br><br>
+            <a class="header-links" href="../index.php">
+                <i class="bi bi-house">Ir al inicio</i>
+            </a>
+            <br><br><br>
+        </aside>
+    </main>
 
 </body>
 

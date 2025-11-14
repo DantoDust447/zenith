@@ -48,8 +48,6 @@ try {
         <nav>
             <h1 class="principal-link">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?>!</h1>
             <div class="links-container">
-                <a class="header-links" href="../index.php">← Volver a la página principal</a>
-                <a class="header-links" href="../index.php">Ir al Inicio</a>
             </div>
 
         </nav>
@@ -95,6 +93,7 @@ try {
             <?php endif; ?>
         </div>
         <aside style="width:25%; border-left:1px solid #00a703; align-text:center; padding-left:10px;">
+            <br>
             <a href="../forms/subir_video.php" class="header-links">
                 <i class="bi bi-plus-circle-fill"> Nuevo video</i>
             </a>
@@ -103,6 +102,10 @@ try {
                 <i class="bi bi-person-bounding-box"> Cerrar Sesión</i>
             </a>
             <br><br>
+            <a class="header-links" href="../index.php">
+                <i class="bi bi-house">Ir al inicio</i>
+            </a>
+            <br><br><br>
             <p class="info-alerts">
                 ALERTA: <br>
                 Para eliminar un video, tendrás que hacer dos clicks. <br>
