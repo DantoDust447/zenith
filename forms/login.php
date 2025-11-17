@@ -20,6 +20,7 @@
         <br><br>
         <button type="submit" class="login-button">Entrar</button>
     </form>
+    <p style="width:100%; text-align:center;">¿No tienes una cuenta? <a style="color:#00a703;" href="registro.php">Regístrate aquí</a></p>
     </main>
 </body>
 </html>

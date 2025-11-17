@@ -84,7 +84,7 @@ h2{
 }
 .card-video{
     text-decoration: none;
-    height: 200px;
+    height: 100px;
     display: flex;
     margin: 15px;
     background-color: #333333;
@@ -99,7 +99,8 @@ h2{
     transition: transform 0.2s;
 }
 .video-preview{
-    width: 25%;
+    height: 100%;
+    width: 30%;
     border-radius: 10px;
     margin: 0;
 }
@@ -112,7 +113,7 @@ h2{
 }
 .descripcion{
     padding: 10px;
-    width: 75%;
+    width: 70%;
 }
 .detalles-video{
     padding: 20px;
@@ -155,6 +156,7 @@ h2{
     border: 0.5px solid #227900;
 }
 .login-button{
+    text-decoration: none;
     border-radius: 50px;
     padding: 10px;
     border: #227900 0.1px solid;

@@ -61,17 +61,12 @@ try {
                 <a href="index.php" class="cleaner">Limpiar Búsqueda</a>
                 <?php endif; ?>
             </form>
-            <div class="links-container">
                 <?php if (isset($_SESSION['logueado'])): ?>
-                <a class="header-links" href="forms/subir_video.php">Subir Video</a>
-                <a class="header-links" href="procesos/logout.php">Cerrar Sesión</a>
-                <a class="header-links" href="forms/dashboard.php">Dashboard</a>
-                <a class="header-links"><?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?></a>
+                <a class="header-links" href="forms/dashboard.php"><i class="bi bi-file-person">
+                <?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?></i></a>
                 <?php else: ?>
-                <a class="header-links" href="forms/login.php">Iniciar Sesión</a> |
                 <a class="header-links" href="forms/registro.php">Registrarse</a>
                 <?php endif; ?>
-            </div>
         </nav>
     </header>
     <main style="display: flex;">
@@ -107,16 +102,15 @@ try {
         </div>
         <aside style="width:25%; border-left:1px solid #00a703; align-text:center; padding-left:10px;">
             <br>
-            <a href="../forms/subir_video.php" class="header-links">
-                <i class="bi bi-plus-circle-fill"> Nuevo video</i>
+            <a href="forms/subir_video.php" class="header-links">
+                <i class="bi bi-fast-forward-circle-fill"> Subir video</i>
             </a>
-            <br><br>
-            <a href="../procesos/logout.php" class="header-links">
+            <a href="procesos/logout.php" class="header-links">
                 <i class="bi bi-person-bounding-box"> Cerrar Sesión</i>
             </a>
             <br><br>
             <a class="header-links" href="../index.php">
-                <i class="bi bi-house">Ir al inicio</i>
+                <i class="bi bi-house"> Ir al inicio</i>
             </a>
             <br><br><br>
         </aside>
